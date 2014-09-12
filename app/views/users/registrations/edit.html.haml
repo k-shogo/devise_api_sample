@@ -12,6 +12,20 @@
     = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
   .form-actions
     = f.button :submit, "Update"
+
+%h3 authentication token
+.ui.form.segment
+  .field
+    %input{placeholder: 'authentication token', readonly: true, type: 'text', value: resource.authentication_token, id: 'authentication_token'}
+
+  = link_to authentication_token_path, method: :put, remote: true, id: 'generate_authentication_token', class: 'ui button green' do
+    = semantic_icon :refresh
+    generate authentication token
+
+  = link_to authentication_token_path, method: :delete, remote: true, id: 'delete_authentication_token', class: 'ui button red'do
+    = semantic_icon :remove
+    delete authentication token
+
 %h3 Cancel my account
 %p
   Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
