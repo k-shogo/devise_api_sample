@@ -45,22 +45,66 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: :span, class: :error }
   end
 
+
+
+  config.wrappers :semantic, tag: 'div', class: "field", error_class: 'error', hint_class: 'with_hint' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label_input
+    b.optional :maxlength
+    b.optional :pattern
+    b.optional :min_max
+    b.use :hint,  wrap_with: { tag: 'div', class: 'hint' }
+    b.use :error, wrap_with: { tag: 'div', class: 'ui red pointing above label error' }
+
+  end
+
+  config.wrappers :semantic_checkbox, tag: 'div', class: "inline field", error_class: 'error', hint_class: 'with_hint' do |b|
+    b.use :html5
+    b.wrapper tag: 'div', class: 'ui checkbox' do |input|
+      input.use :input
+      input.wrapper tag: 'label' do |box| end
+    end
+    b.use :label
+  end
+
+  config.wrappers :semantic_checkbox_slider, tag: 'div', class: "inline field", error_class: 'error', hint_class: 'with_hint' do |b|
+    b.use :html5
+    b.wrapper tag: 'div', class: 'ui slider checkbox' do |input|
+      input.use :input
+      input.wrapper tag: 'label' do |slide| end
+    end
+    b.use :label
+  end
+
+  config.wrappers :semantic_checkbox_toggle, tag: 'div', class: "inline field", error_class: 'error', hint_class: 'with_hint' do |b|
+    b.use :html5
+    b.wrapper tag: 'div', class: 'ui toggle checkbox' do |input|
+      input.use :input
+      input.wrapper tag: 'label' do |slide| end
+    end
+    b.use :label
+  end
+
+
+
+
   # The default wrapper to be used by the FormBuilder.
-  config.default_wrapper = :default
+  config.default_wrapper = :semantic
 
   # Define the way to render check boxes / radio buttons with labels.
   # Defaults to :nested for bootstrap config.
   #   inline: input + label
   #   nested: label > input
-  config.boolean_style = :nested
+  config.boolean_style = :inline
 
   # Default class for buttons
-  config.button_class = 'btn'
+  config.button_class = 'ui blue submit button'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
   # Use :to_sentence to list all errors for each field.
-  # config.error_method = :first
+  config.error_method = :first
 
   # Default tag used for error notification helper.
   config.error_notification_tag = :div
@@ -95,10 +139,10 @@ SimpleForm.setup do |config|
   # config.label_text = lambda { |label, required| "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
-  config.label_class = 'control-label'
+  #config.label_class = 'control-label'
 
   # You can define the class to use on all forms. Default is simple_form.
-  # config.form_class = :simple_form
+  config.form_class = 'ui form'
 
   # You can define which elements should obtain additional classes
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
