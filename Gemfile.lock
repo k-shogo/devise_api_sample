@@ -37,6 +37,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    cancancan (1.9.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -166,6 +167,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
+  cancancan
   coffee-rails (~> 4.0.0)
   devise
   erb2haml
