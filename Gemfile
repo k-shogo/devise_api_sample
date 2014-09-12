@@ -36,6 +36,9 @@ gem 'cancancan'
 # form builder
 gem 'simple_form'
 
+# link hepler
+gem 'active_link_to'
+
 group :development do
   gem 'spring'
   gem 'quiet_assets'

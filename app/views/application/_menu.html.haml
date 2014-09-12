@@ -1,0 +1,18 @@
+.ui.pointing.menu.large
+  - if can? :namage, Note
+    = active_link_to notes_path, class: 'item' do
+      = semantic_icon(:book)
+      ノート
+  - if user_signed_in?
+    = active_link_to edit_user_registration_path, class: 'item' do
+      = semantic_icon(:setting)
+      アカウント設定
+  .right.menu
+    - if user_signed_in?
+      = link_to destroy_user_session_path, method: :delete, class: 'item' do
+        = semantic_icon(:sign, :out)
+        #{current_user.email}:ログアウト
+    - else
+      = active_link_to new_user_session_path, class: 'item' do
+        = semantic_icon(:sign, :in)
+        ログイン
