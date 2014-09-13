@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token,     if: -> {request.format.json?}
-  before_action      :authenticate_user_from_token!, if: -> {params[:token].present?}
+  before_action      :authenticate_user_from_token!, if: -> {params[:email].present?}
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user_from_token!
-    if user = User.find_by(authentication_token: params[:token].presence)
+    user = User.find_by(email: params[:email])
+    if Devise.secure_compare(user.try(:authentication_token), params[:token])
       sign_in user, store: false
     end
   end
