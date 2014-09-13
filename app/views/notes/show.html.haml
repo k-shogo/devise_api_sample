@@ -1,12 +1,6 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @note.title
-%p
-  %b Body:
+.ui.segment
+  %h2= @note.title
   = @note.body
-
-= link_to 'Edit', edit_note_path(@note)
-
-= link_to 'Back', notes_path
+.ui.buttons
+  = link_to 'Edit', edit_note_path(@note), class: 'ui button'
+  = link_to 'Back', notes_path, class: 'ui button'

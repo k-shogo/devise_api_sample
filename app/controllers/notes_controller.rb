@@ -5,7 +5,7 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.accessible_by(current_ability)
+    @notes = Note.accessible_by(current_ability).order(created_at: :desc)
   end
 
   # GET /notes/1
