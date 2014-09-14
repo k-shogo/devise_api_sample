@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates:authentication_token, uniqueness: true, allow_nil: true
-  has_many :notes
+  has_many :notes, dependent: :destroy
 
   def ensure_authentication_token
     self.authentication_token || generate_authentication_token
